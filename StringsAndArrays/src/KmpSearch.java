@@ -44,10 +44,11 @@ public class KmpSearch {
                 continue;
             }
             
-            if(j > 0)
+            if(j > 0) {
                 j = lps[j - 1];
-            else
+            } else {
                 i++;
+            }
         }
         
         return -1;
