@@ -36,6 +36,7 @@ public class QueueWithTwoStacks<T> {
         }
     }
     
+    @Override
     public String toString() {
         List<T> result = new ArrayList<>(outbox);
         result.addAll(inbox);
