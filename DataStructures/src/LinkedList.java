@@ -1,7 +1,7 @@
 
 public class LinkedList<T> {
     
-    private Node<T> head;
+    public Node<T> head;
     
     public LinkedList() { }
     
@@ -94,6 +94,7 @@ public class LinkedList<T> {
         
         return result.toString();
     }
+    
     
     public static class Node<T> {
         Node next;
