@@ -11,7 +11,7 @@ public class BinaryTree<T extends Comparable> {
         if(parent == null)
             return node;
         
-        if(parent.value.compareTo(node.value) < 0) {
+        if(parent.value.compareTo(node.value) > 0) {
             parent.left = addNode(parent.left, node);
         } else {
             parent.right = addNode(parent.right, node);
@@ -31,10 +31,10 @@ public class BinaryTree<T extends Comparable> {
         int compareResult = node.value.compareTo(removingValue);
         
         if(compareResult > 0)
-            return removeNode(node.right, node, removingValue);
+            return removeNode(node.left, node, removingValue);
         
         if(compareResult < 0)
-            return removeNode(node.left, node, removingValue);
+            return removeNode(node.right, node, removingValue);
         
         if(parent == null) {
             root = doRemoveNode(node);
@@ -85,11 +85,11 @@ public class BinaryTree<T extends Comparable> {
     private String stringify(Node<T> node) {
         String result = "(" + node.value;
         
-        if(node.right != null)
-            result += " " + stringify(node.right);
-        
         if(node.left != null)
             result += " " + stringify(node.left);
+        
+        if(node.right != null)
+            result += " " + stringify(node.right);
         
         return result + ")";
     }

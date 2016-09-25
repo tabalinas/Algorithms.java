@@ -65,10 +65,10 @@ public class BinaryTreeTest {
         tree.add(20);
         tree.add(12);
         tree.add(17);
+        tree.add(16);
         tree.add(25);
-        tree.add(30);
         
-        String expectedTreeString = "(10 (5) (15 (12) (25 (17) (30))))";
+        String expectedTreeString = "(10 (5) (15 (12) (17 (16) (25))))";
         
         boolean wasRemoved = tree.remove(20);
         
@@ -82,18 +82,18 @@ public class BinaryTreeTest {
         tree.add(10);
         tree.add(5);
         tree.add(15);
-        tree.add(20);
         tree.add(12);
-        tree.add(17);
-        tree.add(25);
-        tree.add(23);
-        tree.add(24);
-        tree.add(22);
         tree.add(30);
+        tree.add(25);
+        tree.add(35);
+        tree.add(27);
+        tree.add(20);
+        tree.add(29);
+        tree.add(28);
         
-        String expectedTreeString = "(10 (5) (15 (12) (22 (17) (25 (23 (24)) (30)))))";
+        String expectedTreeString = "(10 (5) (15 (12) (29 (25 (20) (27 (28))) (35))))";
         
-        boolean wasRemoved = tree.remove(20);
+        boolean wasRemoved = tree.remove(30);
         
         assertTrue(wasRemoved);
         assertEquals(expectedTreeString, tree.toString());
@@ -111,7 +111,7 @@ public class BinaryTreeTest {
         tree.add(-2);
         tree.add(7);
         
-        String expectedTreeString = "(12 (5 (-2) (7)) (15 (20 (17))))";
+        String expectedTreeString = "(7 (5 (-2)) (15 (12) (20 (17))))";
         
         boolean wasRemoved = tree.remove(10);
         
