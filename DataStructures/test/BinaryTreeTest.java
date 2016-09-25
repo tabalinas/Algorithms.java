@@ -119,4 +119,64 @@ public class BinaryTreeTest {
         assertEquals(expectedTreeString, tree.toString());
     }
     
+    @Test
+    public void testPreOrderTraversal() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        StringBuilder result = new StringBuilder();
+        tree.preOrder((BinaryTree.Node<Integer> node) -> {
+            result.append(node.value).append(" ");
+        });
+        
+        assertEquals("10 5 -2 7 15 12 20 17 ", result.toString());
+    }
+    
+    @Test
+    public void testInOrderTraversal() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        StringBuilder result = new StringBuilder();
+        tree.inOrder((BinaryTree.Node<Integer> node) -> {
+            result.append(node.value).append(" ");
+        });
+        
+        assertEquals("-2 5 7 10 12 15 17 20 ", result.toString());
+    }
+    
+    @Test
+    public void testPostOrderTraversal() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        StringBuilder result = new StringBuilder();
+        tree.postOrder((BinaryTree.Node<Integer> node) -> {
+            result.append(node.value).append(" ");
+        });
+        
+        assertEquals("-2 7 5 12 17 20 15 10 ", result.toString());
+    }
+
+    @Test
+    public void testLevelOrderTraversal() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        StringBuilder result = new StringBuilder();
+        tree.levelOrder((BinaryTree.Node<Integer> node) -> {
+            result.append(node.value).append(" ");
+        });
+        
+        assertEquals("10 5 15 -2 7 12 20 17 ", result.toString());
+    }
+
+    private BinaryTree<Integer> prepareTestTree() {
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        tree.add(10);
+        tree.add(5);
+        tree.add(15);
+        tree.add(20);
+        tree.add(12);
+        tree.add(17);
+        tree.add(-2);
+        tree.add(7);
+        return tree;
+    }
 }

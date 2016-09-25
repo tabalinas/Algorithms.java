@@ -1,4 +1,8 @@
 
+import java.util.Queue;
+import java.util.LinkedList;
+
+
 public class BinaryTree<T extends Comparable> {
     
     Node<T> root;
@@ -77,6 +81,47 @@ public class BinaryTree<T extends Comparable> {
         return result;
     }
     
+    public void preOrder(NodeVisitor<T> nodeVisitor) {
+        doPreOrder(root, nodeVisitor);
+    }
+    
+    private void doPreOrder(Node<T> node, NodeVisitor<T> nodeVisitor) {
+        if(node == null)
+            return;
+        
+        nodeVisitor.visit(node);
+        
+        doPreOrder(node.left, nodeVisitor);
+        doPreOrder(node.right, nodeVisitor);
+    }
+    
+    public void inOrder(NodeVisitor<T> nodeVisitor) {
+        doInOrder(root, nodeVisitor);
+    }
+    
+    private void doInOrder(Node<T> node, NodeVisitor<T> nodeVisitor) {
+        if(node == null)
+            return;
+        
+        
+        doInOrder(node.left, nodeVisitor);
+        nodeVisitor.visit(node);
+        doInOrder(node.right, nodeVisitor);
+    }
+    
+    public void postOrder(NodeVisitor<T> nodeVisitor) {
+        doPostOrder(root, nodeVisitor);
+    }
+    
+    private void doPostOrder(Node<T> node, NodeVisitor<T> nodeVisitor) {
+        if(node == null)
+            return;
+        
+        doPostOrder(node.left, nodeVisitor);
+        doPostOrder(node.right, nodeVisitor);
+        nodeVisitor.visit(node);
+    }
+    
     @Override
     public String toString() {
         return stringify(root);
@@ -94,6 +139,27 @@ public class BinaryTree<T extends Comparable> {
         return result + ")";
     }
 
+    void levelOrder(NodeVisitor<T> nodeVisitor) {
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while(!queue.isEmpty()) {
+            Node<T> node = queue.poll();
+            
+            nodeVisitor.visit(node);
+           
+            if(node.left != null)
+                queue.offer(node.left);
+            
+            if(node.right != null)
+                queue.offer(node.right);
+        }
+    }
+    
+    
+    static interface NodeVisitor<T> {
+        void visit(Node<T> node);
+    }
     
     static class Node<T> {
         public T value;
