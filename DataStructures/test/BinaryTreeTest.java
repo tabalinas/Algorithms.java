@@ -166,6 +166,16 @@ public class BinaryTreeTest {
         
         assertEquals("10 5 15 -2 7 12 20 17 ", result.toString());
     }
+    
+    @Test
+    public void testTreeHeight() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        int treeHeight = tree.getHeight();
+        
+        assertEquals(4, treeHeight);
+    }
+            
 
     private BinaryTree<Integer> prepareTestTree() {
         BinaryTree<Integer> tree = new BinaryTree<>();

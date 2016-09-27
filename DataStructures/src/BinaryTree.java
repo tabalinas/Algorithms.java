@@ -139,6 +139,17 @@ public class BinaryTree<T extends Comparable> {
         }
     }
     
+    public int getHeight() {
+        return getHeight(root, 0);
+    }
+    
+    private int getHeight(Node<T> node, int height) {
+        if(node == null)
+            return height;
+        
+        return Math.max(getHeight(node.left, height + 1), getHeight(node.right, height + 1));
+    }
+    
     @Override
     public String toString() {
         return stringify(root);
