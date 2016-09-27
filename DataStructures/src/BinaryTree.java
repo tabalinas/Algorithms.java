@@ -122,6 +122,23 @@ public class BinaryTree<T extends Comparable> {
         nodeVisitor.visit(node);
     }
     
+    public void levelOrder(NodeVisitor<T> nodeVisitor) {
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while(!queue.isEmpty()) {
+            Node<T> node = queue.poll();
+            
+            nodeVisitor.visit(node);
+           
+            if(node.left != null)
+                queue.offer(node.left);
+            
+            if(node.right != null)
+                queue.offer(node.right);
+        }
+    }
+    
     @Override
     public String toString() {
         return stringify(root);
@@ -137,23 +154,6 @@ public class BinaryTree<T extends Comparable> {
             result += " " + stringify(node.right);
         
         return result + ")";
-    }
-
-    void levelOrder(NodeVisitor<T> nodeVisitor) {
-        Queue<Node<T>> queue = new LinkedList<>();
-        queue.offer(root);
-        
-        while(!queue.isEmpty()) {
-            Node<T> node = queue.poll();
-            
-            nodeVisitor.visit(node);
-           
-            if(node.left != null)
-                queue.offer(node.left);
-            
-            if(node.right != null)
-                queue.offer(node.right);
-        }
     }
     
     
