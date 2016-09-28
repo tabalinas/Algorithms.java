@@ -150,6 +150,18 @@ public class BinaryTree<T extends Comparable> {
         return Math.max(getHeight(node.left, height + 1), getHeight(node.right, height + 1));
     }
     
+    public boolean isBalanced() {
+        return isBalanced(root);
+    }
+    
+    private boolean isBalanced(Node<T> node) {
+        if (node == null)
+            return true;
+        
+        return isBalanced(node.left) && isBalanced(node.right) 
+                && (Math.abs(getHeight(node.left, 0) - getHeight(node.right, 0)) <= 1);
+    }
+    
     @Override
     public String toString() {
         return stringify(root);

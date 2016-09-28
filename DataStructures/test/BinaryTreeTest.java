@@ -175,6 +175,15 @@ public class BinaryTreeTest {
         
         assertEquals(4, treeHeight);
     }
+    
+    @Test
+    public void testIsBalancedTree() {
+        BinaryTree<Integer> tree = prepareTestTree();
+        
+        boolean isBalanced = tree.isBalanced();
+        
+        assertTrue(isBalanced);
+    }
             
 
     private BinaryTree<Integer> prepareTestTree() {
