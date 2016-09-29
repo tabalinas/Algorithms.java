@@ -11,7 +11,7 @@ public class GraphTest {
     public void testGraphCreation() {
         Graph<Integer> graph = prepareGraph();
         
-        String expectedResult = "(1 -> 2, 3), (2 -> 5), (3 -> 4), (4 -> 6, 8), (5), (6), (7), (8)";
+        String expectedResult = "(1 -> 2, 3), (2 -> 1, 5), (3 -> 4), (4 -> 6, 8), (5), (6), (7), (8)";
         
         assertEquals(expectedResult, graph.toString());
     }
@@ -38,6 +38,7 @@ public class GraphTest {
         graph.addVertex(8);
         
         graph.addEdge(1, 2);
+        graph.addEdge(2, 1);
         graph.addEdge(1, 3);
         graph.addEdge(2, 5);
         graph.addEdge(3, 4);
