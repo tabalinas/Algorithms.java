@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -39,6 +38,27 @@ public class Graph<T> {
                 .map(v -> v.toString())
                 .collect(Collectors.joining(", "));
     }
+
+    public ArrayList<T> dfs(T start, T end) {
+        Vertex<T> startVertex = getVertex(start);
+        return dfs(startVertex, end, new ArrayList<>());
+    }
+
+    private ArrayList<T> dfs(Vertex<T> vertex, T end, ArrayList<T> path) {
+        path.add(vertex.value);
+        
+        if(vertex.value.equals(end))
+            return path;
+        
+        for(Edge<T> edge : vertex.edges) {
+            ArrayList<T> result = dfs(edge.to, end, (ArrayList<T>) path.clone());
+            if(result != null)
+                return result;
+        }
+        
+        return null;
+    }
+    
     
     public static class Vertex<T> {
         T value;
