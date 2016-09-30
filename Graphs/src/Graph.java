@@ -23,13 +23,17 @@ public class Graph<T> {
     }
     
     public void addEdge(T from, T to) {
+        addEdge(from, to, 0);
+    }
+    
+    public void addEdge(T from, T to, int weight) {
         Vertex<T> vertexFrom = getVertex(from);
         Vertex<T> vertexTo = getVertex(to);
         
-        vertexFrom.addEdge(vertexTo);
+        vertexFrom.addEdge(vertexTo, weight);
     }
     
-    private Vertex<T> getVertex(T value) {
+    Vertex<T> getVertex(T value) {
         if(!vertices.containsKey(value))
             throw new IllegalArgumentException("Non-existing vertex with value " + value);
         
@@ -124,7 +128,7 @@ public class Graph<T> {
         
         return result;
     }
-    
+
     
     public static class Vertex<T> {
         T value;
