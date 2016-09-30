@@ -25,6 +25,16 @@ public class GraphTest {
         
         assertArrayEquals(expectedPath, resultPath.stream().mapToInt(Integer::intValue).toArray());
     }
+
+    @Test
+    public void testBreadthFirstSearch() {
+        Graph<Integer> graph = prepareGraph();
+        int[] expectedPath = new int [] { 1, 3, 4, 8 };
+                
+        ArrayList<Integer> resultPath = graph.bfs(1, 8);
+        
+        assertArrayEquals(expectedPath, resultPath.stream().mapToInt(Integer::intValue).toArray());
+    }
     
     private Graph prepareGraph() {
         Graph<Integer> graph = new Graph<>();

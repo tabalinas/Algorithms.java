@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 
@@ -71,6 +73,41 @@ public class Graph<T> {
         }
         
         return false;
+    }
+    
+    public ArrayList<T> bfs(T start, T end) {
+        Vertex<T> startVertex = getVertex(start);
+        Vertex<T> endVertex = getVertex(end);
+        
+        visited = new HashSet<>();
+        path = new HashMap<>();
+        
+        Queue<Vertex<T>> queue = new LinkedList<>();
+        queue.add(startVertex);
+        
+        boolean isFound = false;
+        
+        while(!queue.isEmpty()) {
+            Vertex<T> vertex = queue.poll();
+            
+            visited.add(vertex.value);
+            
+            if(vertex == endVertex) {
+                isFound = true;
+                break;
+            }
+                
+            for(Edge<T> edge : vertex.edges) {
+                if(visited.contains(edge.to.value))
+                    continue;
+                
+                path.put(edge.to.value, vertex.value);
+                queue.add(edge.to);
+            }
+        }
+        
+        return isFound ? restorePath(startVertex, endVertex) : null;
+        
     }
 
     private ArrayList<T> restorePath(Vertex<T> startVertex, Vertex<T> endVertex) {
