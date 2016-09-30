@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -64,7 +63,7 @@ public class Graph<T> {
         visited.add(vertex.value);
         
         for(Edge<T> edge : vertex.edges) {
-            path.put(vertex.value, edge.to.value);
+            path.put(edge.to.value, vertex.value);
             
             boolean isFound = dfs(edge.to, endVertex);
             if(isFound)
@@ -75,7 +74,18 @@ public class Graph<T> {
     }
 
     private ArrayList<T> restorePath(Vertex<T> startVertex, Vertex<T> endVertex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<T> result = new ArrayList<>();
+        
+        T current = endVertex.value;
+        
+        while(current != startVertex.value) {
+            result.add(0, current);
+            current = path.get(current);
+        }
+        
+        result.add(0, startVertex.value);
+        
+        return result;
     }
     
     
