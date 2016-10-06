@@ -27,7 +27,7 @@ public class ReservoirSampling {
     }
 
     private static int getRandom(int start, int end) {
-        return (int)Math.round(Math.random() * (end - start)) + start;
+        return (int)Math.floor(Math.random() * (end - start + 1)) + start;
     }
     
 }
